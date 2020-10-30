@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+
+    <p class="text-center fixed-bottom text-success"><a class="text-success" href="#">Esta é uma aplicação desenvolvida por Thomaz J. Boncompagni, para a fase técnica de entrevistas da Gestauto.</a></p>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

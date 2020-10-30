@@ -29,7 +29,7 @@
 
                         <div class="form-group">
                             <label for="telefoneLabel">Telefone</label>
-                            <input type="tel" name="telefone" class="form-control" id="telefone" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" value="{{ $cadastro->telefone }}" placeholder="Insira seu telefone">
+                            <input type="tel" name="telefone" class="form-control phone" id="telefone" value="{{ $cadastro->telefone }}" placeholder="Insira seu telefone">
                         </div>
 
                         <div class="form-group">

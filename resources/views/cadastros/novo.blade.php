@@ -56,12 +56,12 @@
 
                     <div class="form-group">
                         <label for="emailLabel">email</label>
-                        <input type="email" name="email" class="form-control" id="email" placeholder="E-Mail">
+                        <input type="email" name="email" class="form-control phone" id="email" placeholder="E-Mail">
                     </div>
 
                     <div class="form-group">
                         <label for="telefoneLabel">Telefone</label>
-                        <input type="tel" name="telefone" class="form-control" id="telefone" pattern="\([0-9]{2}\)[\s][0-9]{4}-[0-9]{4,5}" placeholder="Insira seu telefone">
+                        <input type="tel" name="telefone" class="form-control phone" id="telefone"  placeholder="Insira seu telefone">
                     </div>
 
                     <div class="form-group">
@@ -84,34 +84,45 @@
     </div>
 </div>
 <script>
+
+var behavior = function (val) {
+    return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+},
+options = {
+    onKeyPress: function (val, e, field, options) {
+        field.mask(behavior.apply({}, arguments), options);
+    }
+};
+
+$('.phone').mask(behavior, options);
     
         $('#data_nascimento').datepicker({
             uiLibrary: 'bootstrap4'
         });
 
 
-// Check for the File API support.
+// Verifica se a API é suportada no navegador
 if (window.File && window.FileReader && window.FileList && window.Blob) {
   document.getElementById('files').addEventListener('change', handleFileSelect, false);
 } else {
-  alert('The File APIs are not fully supported in this browser.');
+  alert('Desculpe, Seu navegador não suporta carregamento de arquivo.');
 }
 
 function handleFileSelect(evt) {
   var f = evt.target.files[0]; // FileList object
   var reader = new FileReader();
-  // Closure to capture the file information.
+
+  //Captura a informação do arquivo
   reader.onload = (function(theFile) {
     return function(e) {
       var binaryData = e.target.result;
-      //Converting Binary Data to base 64
+      //Converte os Dados Binários para Base64
       var base64String = window.btoa(binaryData);
-      //showing file converted to base64
+      //Aplica o Base64 em um input de texto
       document.getElementById('curriculo').value = base64String;
-
     };
   })(f);
-  // Read in the image file as a data URL.
+  // Lê o Arquivo como Dados de URL.
   reader.readAsBinaryString(f);
 }
 </script>
